@@ -1,0 +1,9 @@
+<Project>
+  <!-- Base project properties -->
+  <PropertyGroup>
+    <VersionPrefix>0.0.1</VersionPrefix>
+    <RepositoryName>CoreLib</RepositoryName>
+    <Description>CoreLib</Description>
+    <PackageTags></PackageTags>
+  </PropertyGroup>
+</Project>
