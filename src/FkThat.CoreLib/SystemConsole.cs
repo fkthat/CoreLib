@@ -2,8 +2,6 @@ namespace FkThat.CoreLib;
 
 using System.Diagnostics.CodeAnalysis;
 
-using Console = System.Console;
-
 /// <summary>
 /// Represents the system console.
 /// </summary>
