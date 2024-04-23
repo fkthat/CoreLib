@@ -10,4 +10,9 @@ public interface IClock
     /// Coordinated Universal Time (UTC) date and time and whose offset is <c c="TimeSpan.Zero"/>.
     /// </summary>
     DateTimeOffset UtcNow { get; }
+
+    /// <summary>
+    /// Gets a <see cref="TimeZoneInfo"/> object that represents the local time zone.
+    /// </summary>
+    TimeZoneInfo LocalTimeZone { get; }
 }

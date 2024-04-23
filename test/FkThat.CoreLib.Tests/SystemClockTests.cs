@@ -24,4 +24,11 @@ public class SystemClockTests
         SystemClock sut = new();
         sut.UtcNow.Offset.Should().Be(TimeSpan.Zero);
     }
+
+    [Fact]
+    public void Local_returns_local_time_zone()
+    {
+        SystemClock sut = new();
+        sut.LocalTimeZone.Should().Be(TimeZoneInfo.Local);
+    }
 }
