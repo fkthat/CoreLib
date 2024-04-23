@@ -1,9 +1,9 @@
 <Project>
   <!-- Base project properties -->
   <PropertyGroup>
-    <VersionPrefix>0.0.1</VersionPrefix>
+    <VersionPrefix>1.0.0</VersionPrefix>
     <RepositoryName>CoreLib</RepositoryName>
-    <Description>CoreLib</Description>
+    <Description>The library of simple commonly used types.</Description>
     <PackageTags></PackageTags>
   </PropertyGroup>
 </Project>
