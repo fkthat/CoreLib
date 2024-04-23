@@ -1,5 +1,10 @@
 ﻿namespace FkThat.CoreLib;
 
+internal interface IV7GuidSeq
+{
+    void CompareAjust(ref long msec, ref ushort seq);
+}
+
 /// <summary>
 /// Sequential (V7) GUID generator.
 /// </summary>
@@ -43,5 +48,49 @@ public sealed class V7GuidGenerator(IClock clock, IRandomGenerator random) : IGu
         random.GetBytes(d);
         var d0 = (byte)((d[0] & 0x3f) | 0x80);
         return new(a, b, c, d0, d[1], d[2], d[3], d[4], d[5], d[6], d[7]);
+    }
+}
+
+internal sealed class V7GuidSeq : IV7GuidSeq
+{
+    private static readonly Lazy<IV7GuidSeq> _singleton = new(() => new V7GuidSeq());
+
+    private readonly object _lock = new();
+
+    /// <summary>
+    /// The constructor for unit tests.
+    /// </summary>
+    internal V7GuidSeq(long msec, ushort seq)
+    {
+        Msec = msec;
+        Seq = seq;
+    }
+
+    private V7GuidSeq()
+    {
+    }
+
+    public static IV7GuidSeq Singleton => _singleton.Value;
+
+    internal long Msec { get; private set; }
+
+    internal ushort Seq { get; private set; }
+
+    public void CompareAjust(ref long msec, ref ushort seq)
+    {
+        lock (_lock)
+        {
+            if (msec > Msec)
+            {
+                Msec = msec;
+                Seq = 0;
+                seq = 0;
+            }
+            else
+            {
+                msec = Msec;
+                seq = ++Seq;
+            }
+        }
     }
 }
